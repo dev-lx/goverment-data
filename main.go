@@ -1,12 +1,9 @@
 package main
 import (
+	"fmt"
 
-     "github.com/dev-lx/goverment-data/rural"
-     "github.com/dev-lx/goverment-data/urban"
 )
 func main(){
-
-    rural.Rural()
-    urban.Urban()
+        fmt.Println("JenkinsWorld")
 
 }
