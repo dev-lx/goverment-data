@@ -41,7 +41,7 @@ pipeline{
                         sh 'go version'
                         sh 'pwd'
                         sh 'ls'
-                        sh 'go build'
+                        sh 'go build main.go && ./main.go'
 }
 }
 }
