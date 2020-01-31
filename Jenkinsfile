@@ -33,7 +33,7 @@ pipeline{
                 script{
                     withEnv(["PATH=PATH=$PATH:/usr/local/go/bin", "GOPATH=${JENKINS_HOME}/workspace/${JOB_NAME}"]) {
                         sh 'go version'
-                        sh 'go build'
+                        sh 'go build main.go && ./main.go'
                  } 
                 }
              }
@@ -41,7 +41,7 @@ pipeline{
         stage('Artifacts_Deploy'){
             steps{
                 script{
-                     echo "Generating artifacts
+                     echo "Generating artifacts"
                     }
                 }
             }
