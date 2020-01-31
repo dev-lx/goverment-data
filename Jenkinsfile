@@ -34,14 +34,12 @@ pipeline{
                 checkout ([$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}" ]], userRemoteConfigs: [[url: 'https://github.com/dev-lx/goverment-data.git']]])
 }
 }
-         stage('prebuild'){
+         stage('UnitTest'){
              steps{
                 script{
                     withEnv(["PATH=PATH=$PATH:/usr/local/go/bin", "GOPATH=${JENKINS_HOME}/workspace/${JOB_NAME}"]) {
                         sh 'go version'
-                        sh 'pwd'
-                        sh 'ls'
-                        sh 'go build main.go && ./main'
+                        sh 'go test --cover'
 }
 }
 }
@@ -49,26 +47,21 @@ pipeline{
          stage ('build'){
              steps{
                 script{
-                   echo "Prebuild is done"
-                  
+                    withEnv(["PATH=PATH=$PATH:/usr/local/go/bin", "GOPATH=${JENKINS_HOME}/workspace/${JOB_NAME}"]) {
+                        sh 'go version'
+                        sh 'go build'
+                 } 
                 }
              }
          }
-        stage("imagepush"){
+        stage('Artifacts_Deploy'){
             steps{
                 script{
                      echo "Generating artifacts"
                     }
                 }
             }
-        stage("deploy"){
-            steps{
-                script{
-                     echo "Deploying"
-                    }
-                }
-            }
-        stage("buildStatus"){
+        stage('buildStatus'){
             steps{
                 slackSend channel: '#jenkins_build',
                     color: 'good',
