@@ -9,7 +9,7 @@ pipeline{
         dockerImage = ''
         registryurl = 'alwaysavail/gitops'
         dockercred = 'hub' 
-        RECEPIENT_ID = 'aliabbask08@gmail.com'
+        RECEPIENT_ID = 'aliabbas.kothawala@calsoftinc.com'
 
 }
      stages{
