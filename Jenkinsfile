@@ -76,14 +76,14 @@ pipeline{
             script {
                 if (currentBuild.currentResult == 'FAILURE') { // Other values: SUCCESS, UNSTABLE
                     // Send an email only if the build status has changed from green/unstable to red
-                    emailext subject: '$DEFAULT_SUBJECT',
-                        body: '$DEFAULT_CONTENT',
+                    emailext subject: 'Build status',
+                        body: 'Job failed',
                         recipientProviders: [
                             [$class: 'CulpritsRecipientProvider'],
                             [$class: 'DevelopersRecipientProvider'],
                             [$class: 'RequesterRecipientProvider']
                         ]
-                        to: '$DEFAULT_RECIPIENTS'
+                        to: '${DEFAULT_RECIPIENTS}'
                 }
             }
         }
