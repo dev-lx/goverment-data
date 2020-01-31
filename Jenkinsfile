@@ -41,7 +41,7 @@ pipeline{
         stage('Artifacts_Deploy'){
             steps{
                 script{
-                     echo "Generating artifacts"0
+                     echo "Generating artifacts"
                     }
                 }
             }
