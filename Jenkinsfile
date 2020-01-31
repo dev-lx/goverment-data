@@ -33,7 +33,7 @@ pipeline{
                 script{
                     withEnv(["PATH=PATH=$PATH:/usr/local/go/bin", "GOPATH=${JENKINS_HOME}/workspace/${JOB_NAME}"]) {
                         sh 'go version'
-                        sh 'go build main.go && ./main.go'
+                        sh 'go build && ./{JOB_NAME}'
                  } 
                 }
              }
